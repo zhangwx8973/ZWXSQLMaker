@@ -5,43 +5,43 @@
 ### 由于本库的目标是构建SQL语句，并通过一系列宏定义在语法上帮助检查了SQL语句的正确性，所以本库的最终结果是输出SQL的字符串，不负责执行SQL语句，使用者可以结合FMDB或Sqlite3库进行数据库的执行操作。
 
 ## 构建Sql的api：
-select(NSString *colume, ...) 构建select部分
-from(NSString *tableName, ...) 构建from部分
-where(NSString *where, ...) 构建where expression部分
-count(NSString *count) 构建count函数部分
-max(NSString *max) 构建max函数部分
-groupby(NSString *groupby) 构建groupby函数部分
-orderby(NSString *orderby) 构建orderby函数部分
-ASC(x)根据对象属性构建ASC
-DESC(x)根据对象属性构建desc
+###select(NSString *colume, ...) 构建select部分
+###from(NSString *tableName, ...) 构建from部分
+###where(NSString *where, ...) 构建where expression部分
+###count(NSString *count) 构建count函数部分
+###max(NSString *max) 构建max函数部分
+###groupby(NSString *groupby) 构建groupby函数部分
+###orderby(NSString *orderby) 构建orderby函数部分
+###ASC(x)根据对象属性构建ASC
+###DESC(x)根据对象属性构建desc
 
-update(NSString *tableName, ...) 构建update部分
-set(NSString *setExpression, ...) 构建set expression部分
+###update(NSString *tableName, ...) 构建update部分
+###set(NSString *setExpression, ...) 构建set expression部分
 
-insertinto(NSString *tableName) 构建insert into部分
-byprop(NSString *insertColume, ...) 根据key-value的形式构建(xx) values ('xx')
-byobjc(id x)根据对象的属性构建(xx) values ('xx')
+###insertinto(NSString *tableName) 构建insert into部分
+###byprop(NSString *insertColume, ...) 根据key-value的形式构建(xx) values ('xx')
+###byobjc(id x)根据对象的属性构建(xx) values ('xx')
 
-deleteFrom(NSString *tableName) 构建delete from部分
+###deleteFrom(NSString *tableName) 构建delete from部分
 
 ## 构建各种字段的api
-PROPNAME(x) 输出属性名称,比如：PROPNAME(userInfo.username) -> username
-PROPNAME_EQUAL_VALUE(x,y) 输出属性名称等于其值的字符串,比如：userInfo.username = 'zwx'; PROPNAME_EQUAL_VALUE(userInfo,username) -> username = 'zwx'
-PROPNAME_NOTEQUAL_VALUE(x,y) 输出属性名称不等于其值的字符串,比如：userInfo.userId = 123; PROPNAME_NOTEQUAL_VALUE(userInfo,userId) -> userId <> 123
-PROPNAME_BIGGERTHAN_VALUE(x,y) 输出属性名称大于其值的字符串,比如：userInfo.userId = 123; PROPNAME_BIGGERTHAN_VALUE(userInfo,userId) -> userId > 123
-PROPNAME_SMALLERTHAN_VALUE(x,y) 输出属性名称大于其值的字符串,比如：userInfo.userId = 123; PROPNAME_BIGGERTHAN_VALUE(userInfo,userId) -> userId < 123
+###PROPNAME(x) 输出属性名称,比如：PROPNAME(userInfo.username) -> username
+###PROPNAME_EQUAL_VALUE(x,y) 输出属性名称等于其值的字符串,比如：userInfo.username = 'zwx'; PROPNAME_EQUAL_VALUE(userInfo,username) -> username = 'zwx'
+###PROPNAME_NOTEQUAL_VALUE(x,y) 输出属性名称不等于其值的字符串,比如：userInfo.userId = 123; PROPNAME_NOTEQUAL_VALUE(userInfo,userId) -> userId <> 123
+###PROPNAME_BIGGERTHAN_VALUE(x,y) 输出属性名称大于其值的字符串,比如：userInfo.userId = 123; PROPNAME_BIGGERTHAN_VALUE(userInfo,userId) -> userId > 123
+###PROPNAME_SMALLERTHAN_VALUE(x,y) 输出属性名称大于其值的字符串,比如：userInfo.userId = 123; PROPNAME_BIGGERTHAN_VALUE(userInfo,userId) -> userId < 123
 
-PROPNAME_EQUAL_EPS(x,y) 输出属性名称等于表达式的字符串,比如：PROPNAME_EQUAL_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId = (select userId from User where userName = 'zwx')
+###PROPNAME_EQUAL_EPS(x,y) 输出属性名称等于表达式的字符串,比如：PROPNAME_EQUAL_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId = (select userId from User where userName = 'zwx')
 
-PROPNAME_NOTEQUAL_EPS(x,y) 输出属性名称不等于表达式的字符串,比如：PROPNAME_NOTEQUAL_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId <> (select userId from User where userName = 'zwx')
+###PROPNAME_NOTEQUAL_EPS(x,y) 输出属性名称不等于表达式的字符串,比如：PROPNAME_NOTEQUAL_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId <> (select userId from User where userName = 'zwx')
 
-PROPNAME_BIGGERTHAN_EPS(x,y) 输出属性名称大于表达式的字符串,比如：PROPNAME_BIGGERTHAN_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId > (select userId from User where userName = 'zwx')
+###PROPNAME_BIGGERTHAN_EPS(x,y) 输出属性名称大于表达式的字符串,比如：PROPNAME_BIGGERTHAN_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId > (select userId from User where userName = 'zwx')
 
-PROPNAME_SMALLERTHAN_EPS(x,y) 输出属性名称小于表达式的字符串,比如：PROPNAME_SMALLERTHAN_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId < (select userId from User where userName = 'zwx')
+###PROPNAME_SMALLERTHAN_EPS(x,y) 输出属性名称小于表达式的字符串,比如：PROPNAME_SMALLERTHAN_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId < (select userId from User where userName = 'zwx')
 
-PROPNAME_IN_EPS(x,y) 输出属性名称包含表达式结果的字符串,比如：PROPNAME_IN_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId in (select userId from User where userName = 'zwx')
+###PROPNAME_IN_EPS(x,y) 输出属性名称包含表达式结果的字符串,比如：PROPNAME_IN_EPS(userInfo.userId,@"select userId from User where userName = 'zwx'") -> userId in (select userId from User where userName = 'zwx')
 
-PROPNAME_VALUE(x,y) 输出属性名称和值,比如userInfo.userId = 123; PROPNAME_VALUE(userInfo,userId) -> userId-123,配合byprop(NSString *insertColume, ...)使用
+###PROPNAME_VALUE(x,y) 输出属性名称和值,比如userInfo.userId = 123; PROPNAME_VALUE(userInfo,userId) -> userId-123,配合byprop(NSString *insertColume, ...)使用
 
 ##使用案例
 可以参考SQLMakerTests.m中的测试用例
