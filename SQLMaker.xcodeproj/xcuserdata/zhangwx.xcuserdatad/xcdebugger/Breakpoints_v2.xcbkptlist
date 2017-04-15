@@ -10,13 +10,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SQLMakerTests/SQLMakerTests.m"
-            timestampString = "513790302.181353"
+            timestampString = "513953252.545632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-testExample"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SQLMakerTests testExample]"
+                  moduleName = "SQLMakerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangwx/Documents/GitHub/ZWXSQLMaker/ZWXSQLMaker/SQLMakerTests/SQLMakerTests.m"
+                  timestampString = "513953632.219762"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "21179">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SQLMakerTests testExample]"
+                  moduleName = "SQLMakerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangwx/Documents/GitHub/ZWXSQLMaker/ZWXSQLMaker/SQLMakerTests/SQLMakerTests.m"
+                  timestampString = "513953632.223574"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "22701">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SQLMakerTests testExample]"
+                  moduleName = "SQLMakerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangwx/Documents/GitHub/ZWXSQLMaker/ZWXSQLMaker/SQLMakerTests/SQLMakerTests.m"
+                  timestampString = "513953632.226726"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "22878">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SQLMakerTests testExample]"
+                  moduleName = "SQLMakerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangwx/Documents/GitHub/ZWXSQLMaker/ZWXSQLMaker/SQLMakerTests/SQLMakerTests.m"
+                  timestampString = "513953632.230252"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "23006">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

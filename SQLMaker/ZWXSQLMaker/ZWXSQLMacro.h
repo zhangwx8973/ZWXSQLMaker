@@ -15,6 +15,8 @@
 #define where(...) where(__VA_ARGS__ , nil)
 #define groupby(...) groupby(__VA_ARGS__ , nil)
 #define orderby(...) orderby(__VA_ARGS__ , nil)
+#define ASC(x) [NSString stringWithFormat:@"%@ ASC", x]
+#define DESC(x) [NSString stringWithFormat:@"%@ DESC", x]
 
 #define update(...) [SQLMaker shareInstance].update(__VA_ARGS__ , nil)
 #define set(...) set(__VA_ARGS__ , nil)
@@ -23,7 +25,7 @@
 #define byprop(...) value(__VA_ARGS__ , nil)
 #define byobjc(x) valueObj(x)
 
-#define deleteFrom(x) [SQLMaker shareInstance].deleteFrom(x)
+#define deleteFrom(x) [SQLMaker shareInstance].deleteFrom(x,nil)
 
 
 #define PROPNAME(x) @keypath(x)
@@ -41,9 +43,6 @@
 #define PROPNAME_BIGGERTHAN_EPS(x,y) fun_nameexpress(@keypath(x), y, @">")
 #define PROPNAME_SMALLERTHAN_EPS(x,y) fun_nameexpress(@keypath(x), y, @"<")
 #define PROPNAME_IN_EPS(x,y) fun_nameexpress(@keypath(x), y, @"in")
-
-#define ASC(x) [NSString stringWithFormat:@"%@ ASC", PROPNAME(x)]
-#define DESC(x) [NSString stringWithFormat:@"%@ DESC", PROPNAME(x)]
 
 #define CLASSNAME(x) NSStringFromClass([x class])
 

@@ -48,8 +48,6 @@
     entity.userId = 1;
     entity.username = @"zwx";
     entity.sex = Man;
-    entity.city = city;
-    entity.friends = @[friend, friend2];
     
     {
         NSString *exp = @"select * from UserEntity where sex = 1";
@@ -64,14 +62,21 @@
     }
     
     {
-        NSString *exp = @"insert into UserEntity (username) values ('zwx')";
-        NSString *test = insertinto(CLASSNAME(UserEntity)).byprop(PROPNAME_VALUE(entity, username)).toString;
+        NSString *makerStr = select(count(PROPNAME(entity.username)),max(@"sex"),@"*").from(CLASSNAME(UserEntity)).where(PROPNAME_NOTEQUAL_VALUE(entity,sex), PROPNAME_IN_EPS(entity.userId, select(PROPNAME(entity.username)).from(CLASSNAME(UserEntity)).where(PROPNAME_EQUAL_VALUE(entity, sex)).toString)).groupby(PROPNAME(entity.username), @"sex").orderby(ASC(PROPNAME(entity.username))).toString;
+        NSString *exp = @"select count(username), max(sex), * from UserEntity where sex <> 0 and userId in (select username from UserEntity where sex = 0) group by username, sex order by username ASC";
+        XCTAssertEqualObjects(exp, makerStr);
+    }
+    
+    {
+        entity.username = @"qwe";
+        NSString *exp = @"update UserEntity set username = 'qwe' where userId = 1";
+        NSString *test = update(CLASSNAME(UserEntity)).set(PROPNAME_EQUAL_VALUE(entity, username)).where(PROPNAME_EQUAL_VALUE(entity, userId)).toString;
         XCTAssertEqualObjects(exp, test);
     }
     
     {
         NSString *exp = @"insert into UserEntity (username) values ('zwx')";
-        NSString *test = insertinto(CLASSNAME(UserEntity)).byobjc(entity).toString;
+        NSString *test = insertinto(CLASSNAME(UserEntity)).byprop(PROPNAME_VALUE(entity, username)).toString;
         XCTAssertEqualObjects(exp, test);
     }
     
@@ -80,29 +85,17 @@
         NSString *test = insertinto(@"Friend").byprop(PROPNAME_VALUE(entity, userId), PROPNAME_VALUE(friend, userId)).toString;
         XCTAssertEqualObjects(exp, test);
     }
-    
-    {
-        NSString *makerStr = select(count(PROPNAME(entity.username)),max(@"sex"),@"*").from(CLASSNAME(UserEntity)).where(PROPNAME_NOTEQUAL_VALUE(entity,sex), PROPNAME_IN_EPS(entity.userId, select(PROPNAME(entity.username)).from(CLASSNAME(UserEntity)).where(PROPNAME_EQUAL_VALUE(entity, sex)).toString)).groupby(PROPNAME(entity.username), @"sex").orderby(ASC(entity.username)).toString;
-        NSString *exp = @"select count(username), max(sex), * from UserEntity where sex <> 0 and userId in (select username from UserEntity where sex = 0) group by username, sex order by username ASC";
-        XCTAssertEqualObjects(exp, makerStr);
-    }
-    
-    {
-        NSString *makerStr = insertinto(CLASSNAME(UserEntity)).byprop(PROPNAME_VALUE(entity, username)).toString;
-        NSString *exp = @"insert into UserEntity (username) values ('zwx')";
-        XCTAssertEqualObjects(exp, makerStr);
-    }
 
     {
         NSString *makerStr = insertinto(CLASSNAME(UserEntity)).byobjc(entity).toString;
-        NSString *exp = @"insert into UserEntity (username, userId, sex, city, friends) values ('zwx', 1, 0,)";
+        NSString *exp = @"insert into UserEntity (username, userId, sex, city, friends) values ('zwx', 1, 0, '', '')";
         XCTAssertEqualObjects(exp, makerStr);
     }
     
     {
-        NSString *makerStr = insertinto(@"Friend").byprop(PROPNAME_VALUE(entity, userId), PROPNAME_VALUE(friend, userId)).toString;
-        NSString *exp = @"insert into Friend (userId , userId) values (1, 2)";
-        XCTAssertEqualObjects(exp, makerStr);
+        NSString *exp = @"delete from UserEntity where username in (select username from UserEntity where sex = 0 group by username and sex order by username ASC)";
+        NSString *test = deleteFrom(CLASSNAME(UserEntity)).where(PROPNAME_IN_EPS(entity.username, select(PROPNAME(entity.username)).from(CLASSNAME(UserEntity)).where(PROPNAME_EQUAL_VALUE(entity, sex)).groupby(PROPNAME(entity.username), @"sex").orderby(ASC(PROPNAME(entity.username))).toString)).toString;
+        XCTAssertEqualObjects(exp, test);
     }
     
 }
